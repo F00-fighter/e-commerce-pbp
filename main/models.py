@@ -16,3 +16,7 @@ class Product(models.Model):
     validators=[MinValueValidator(1.0), MaxValueValidator(5.0)]
 )
     stock = models.PositiveIntegerField(default=0)
+    image = models.ImageField(upload_to='product_images/', null=True, blank=True)
+
+    def __str__(self):
+        return self.name
