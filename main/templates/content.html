@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Steam Clone{% endblock %}
+
+{% block content %}
+    <!-- Main Offer Section -->
+    <div class="main-offer">
+        <img src="../static/media/bigRelease.jpg" alt="Main Offer Image">
+    </div>
+
+    <!-- Feature & Recommended Section -->
+    <div class="scroll-wrapper">
+        <button class="scroll-button left">&lt;</button>
+        <div class="scroll-content">
+            {% for product in products %}
+                <div class="feature-item">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                    <div class="feature-details">
+                        <h3>{{ product.name }}</h3>
+                        <p>{{ product.description }}</p>
+                        <p>Category: {{ product.category }}</p>
+                        <p class="price">${{ product.price }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button class="scroll-button right">&gt;</button>
+    </div>
+     <!-- Link your JavaScript file here -->
+     <script src="{% static 'js/script.js' %}"></script> 
+{% endblock %}
