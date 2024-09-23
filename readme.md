@@ -70,9 +70,33 @@ Setelah membuat form, saya buat Template HTML untuk form itu dimana halaman ini 
 Terakhit, saya tambahkan fungsi di views.py yang akan menangani permintaan POST dari formulir. Fungsi ini akan memvalidasi data yang dimasukkan user dan menyimpannya ke dalam database. Jika data valid, user diredirect ke halaman utama.
 
 ii. Tambahkan 4 Fungsi Views Baru untuk Melihat Objek dalam Format XML, JSON, XML by ID, dan JSON by ID
+Imports:
+Diawali dengan mengimpor modul yang diperlukan untuk menangani respons HTTP dan serialisasi data model menjadi format XML dan JSON yaitu HttpResponse untuk mengirimkan respons dan serializers untuk mengonversi data model ke berbagai format.
+
+Fungsi untuk Mengembalikan Semua Data dalam Bentuk XML:
+Pada views.py, saya buat fungsi untuk lakukan query untuk mengambil semua entri dari model Product. Data ini kemudian diatur ke dalam format XML dan dikembalikan dengan tipe konten "application/xml". Fungsi ini memungkinkan pengguna mengakses semua data dalam format XML melalui URL tertentu.
+
+Fungsi untuk Mengembalikan Semua Data dalam Bentuk JSON:
+Buat fungsi lain yang mengembalikan semua data dalam format JSON. Fungsi ini melakukan query yang sama seperti fungsi XML, tetapi data yang tersedia diatur ke dalam format JSON dan mengembalikannya dengan tipe konten "application/json".
+
+Fungsi untuk Mengembalikan Data Berdasarkan ID:
+Untuk format XML dan JSON, buat dua fungsi terpisah yang melakukan query pada model Product menggunakan ID tertentu (dikirimkan sebagai parameter URL). Tergantung pada format yang diinginkan (XML atau JSON), hasil query tersebut diatur dan dikembalikan dengan tipe konten yang sesuai.
 
 
 iii. Membuat Routing URL untuk Masing-masing Views
+Di file urls.py, tambahkan path untuk setiap fungsi view, sehingga memungkinkan akses ke data dalam format XML dan JSON, baik untuk semua entri maupun berdasarkan ID. URL ini memungkinkan pengguna mengambil seluruh dataset atau entri tertentu berdasarkan ID, dalam format XML atau JSON.
+
+6. Mengakses keempat URL di poin 2 menggunakan Postman, membuat screenshot dari hasil akses URL pada Postman, dan menambahkannya ke dalam README.md.
+   XML Link
+   ![image](https://github.com/user-attachments/assets/9ef729d7-0b47-4bdf-b736-d0a6362d2ecc)
+   XML Link with ID
+   ![image](https://github.com/user-attachments/assets/b8eda7fb-6056-487f-be6f-47eb9e145cf7)
+   JSON Link
+   ![image](https://github.com/user-attachments/assets/75597346-b890-4f19-8986-76387dfc52f6)
+   JSON Link with ID
+   ![image](https://github.com/user-attachments/assets/13846369-78e5-410a-8f61-760135a6c6f8)
+
+
 
 
 </details>
