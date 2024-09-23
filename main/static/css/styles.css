@@ -1,8 +1,52 @@
+
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #1b2838;
     color: #c7d5e0;
+}
+
+.register-page{
+    height: calc(100vh - 100px);
+    /* Background image with gradient overlay */
+    background: linear-gradient(
+        rgba(27, 40, 56, 0.7),  /* Top gradient color, with transparency */
+        rgba(27, 40, 56, 1)     /* Bottom gradient color */
+    ),
+    url("../media/stardewvalley.jpg") no-repeat center center fixed; /* Your background image path */
+    background-size: cover; /* Cover the entire background */
+    padding-top: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+.login {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the form */
+    border-radius: 8px;
+    max-width: 600px;
+    padding: 20px;
+    margin: 0 auto;
+    color: #c7d5e0;
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+}
+
+.register-link{
+    color: #c7d5e0;
+    margin-top:20%;
+    text-align: center;
+}
+
+.register-link a {
+    color: #66c0f4;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
 }
 
 header {
@@ -154,4 +198,44 @@ nav a:hover {
     background-color: #2a475e;
     color: white;
     text-align: center;
+}
+
+table{
+    width: 100%;
+}
+
+table td {
+    color: #c7d5e0; /* Text color for table cells */
+    padding: 5px;  /* Add some padding to the table cells */
+}
+
+input[type="text"], 
+input[type="password"] {
+    width: 100%; /* Makes the input fields span 100% */
+    padding: 10px; /* Add some padding */
+    border: none; /* Remove default border */
+    background-color: rgba(255, 255, 255, 0.061); /* Darker color for the input fields */
+    color: white; /* Text color for the input fields */
+}
+
+input[type="submit"] {
+    margin-left: 35%;
+    width: 30%;
+    height: 50px;
+    padding: 10px;
+    background-color: #66c0f4;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.form-group {
+    margin-bottom: 15px; /* Space between form fields */
 }

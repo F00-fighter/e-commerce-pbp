@@ -4,6 +4,17 @@
 {% block title %}Home - Steam Clone{% endblock %}
 
 {% block content %}
+
+    <!-- Floating Tab -->
+    <div class="floating-tab">
+        <a href="#">Home</a>
+        <a href="#">New Releases</a>
+        <a href="#">Specials</a>
+        <a href="#">VR</a>
+        <a href="#">Top Sellers</a>
+    </div>
+
+
     <!-- Main Offer Section -->
     <div class="main-offer">
         <img src="../static/media/bigRelease.jpg" alt="Main Offer Image">
@@ -26,6 +37,19 @@
             {% endfor %}
         </div>
         <button class="scroll-button right">&gt;</button>
+    </div>
+
+       <!-- Discount Banner -->
+    <div class="discount-banner">
+        <p>Discount, Demos, and More! Now through September 23</p>
+    </div>
+
+    <!-- Categories Section -->
+    <div class="categories">
+        <div class="category-item">Action</div>
+        <div class="category-item">Adventure</div>
+        <div class="category-item">RPG</div>
+        <div class="category-item">Strategy</div>
     </div>
      <!-- Link your JavaScript file here -->
      <script src="{% static 'js/script.js' %}"></script> 

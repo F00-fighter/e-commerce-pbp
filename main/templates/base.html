@@ -100,37 +100,16 @@
             <a href="{% url 'main:create_product' %}">COMMUNITY</a>
             <a href="#">ABOUT</a>
             <a href="#">SUPPORT</a>
+            <a href="{% url 'main:logout' %}">LOGOUT</a>
+
         </nav>
     </header>
 
-    <!-- Floating Tab -->
-    <div class="floating-tab">
-        <a href="#">Home</a>
-        <a href="#">New Releases</a>
-        <a href="#">Specials</a>
-        <a href="#">VR</a>
-        <a href="#">Top Sellers</a>
-    </div>
+      <!-- Block Content for dynamic content starts right after header -->
+      {% block content %}
+      <!-- Content to be extended by child templates -->
+      {% endblock %}
 
-    <!-- Main Content Area -->
-    <main>
-        {% block content %}
-        <!-- Content to be extended by child templates -->
-        {% endblock %}
-    </main>
-
-    <!-- Discount Banner -->
-    <div class="discount-banner">
-        <p>Discount, Demos, and More! Now through September 23</p>
-    </div>
-
-    <!-- Categories Section -->
-    <div class="categories">
-        <div class="category-item">Action</div>
-        <div class="category-item">Adventure</div>
-        <div class="category-item">RPG</div>
-        <div class="category-item">Strategy</div>
-    </div>
 
 </body>
 
