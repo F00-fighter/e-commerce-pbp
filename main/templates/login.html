@@ -10,7 +10,7 @@
     <div class="login">
 
         <div class="form-container">
-            <h1 style="color: #c7d5e0">LOG IN</h1>
+            <h1 style="color: #c7d5e0">SIGN IN</h1>
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-group">
@@ -22,22 +22,22 @@
                     {{ form.password }}
                 </div>
                 <div class="form-group">
-                    <input type="submit" name="submit" value="Log in" />
+                    <input type="submit" name="submit" value="Sign In" />
                 </div>
+                {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
             </form>
         </div>
 
         <div class="register-link">
-            <a href="{% url 'main:register' %}">Don't have an account? Register</a>
+            <span>Don't have an account? </span><br>
+            <a href="{% url 'main:register' %}">Register Now!</a>
         </div>
-
-        {% if messages %}
-        <ul>
-            {% for message in messages %}
-            <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
     </div>
 </div>
 
