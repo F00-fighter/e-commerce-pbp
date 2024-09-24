@@ -100,3 +100,56 @@ Di file urls.py, tambahkan path untuk setiap fungsi view, sehingga memungkinkan 
 
 
 </details>
+
+<details>
+  <summary>Tugas 4</summary>
+  1. Apa perbedaan antara HttpResponseRedirect() dan redirect()?
+  
+  `HttpResponseRedirect()` adalah metode yang dipakai untuk mengalihkan user ke URL lain akan tetapi diperlukan URL string untuk argumentnya.
+  `redirect()` adalah metode yang lebih sederhana yang juga mengalihkan pengguna ke URL tertentu akan tetapi bisa resolve nama view ke URL dengan otomatis dan dapat pass argumen tambahan ketika redirecting. Dengan itu metode ini lebih fleksibel dan dapat dipakai secara umum di Django apps.
+  
+  2. Jelaskan cara kerja penghubungan model Product dengan User!
+     
+  Model `Product` dihubungkan dengan model `User` menggunakan one-to-many di Django. Dalam model `Product`, kita menambahkan field `user` yang merupakan ForeignKey ke model `User`. Hal ini memungkinkan  untuk melacak siapa yang membuat atau memiliki produk tertentu.
+
+  3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login?      Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
+     
+  Authentication adalah proses verifikasi identitas user, biasanya dengan menggunakan username dan password. Saat usuer login, Django memeriksa credentials tersebut dan mengonfirmasi bahwa mereka adalah user yang sah.
+  
+  Authorization adalah proses menentukan hak akses user setelah diotentikasi, yaitu apa yang boleh dan tidak boleh dilakukan user dalam aplikasi.
+  
+  4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan          apakah semua cookies aman digunakan?
+    Django mengingat user yang telah login dengan menggunakan session yang disimpan dalam cookies di   browser user. Saat user berhasil login, Django membuat session baru dan disimpan lah ID pengguna dalam cookie. Cookies juga dapat digunakan untuk menyimpan data lain, seperti preference user atau temporary data.
+
+  Namun tidak semua cookies aman, berikut rincian antar yang aman dan tidak aman:
+  Cookies yang Aman
+  HttpOnly:
+  Cookie dengan atribut HttpOnly tidak dapat diakses melalui JavaScript. Ini membantu melindungi cookie dari serangan XSS (Cross-Site Scripting).
+  
+  Secure:
+  Cookie yang ditandai dengan atribut Secure hanya dapat dikirim melalui koneksi HTTPS. Ini mencegah cookie dikirim melalui koneksi yang tidak aman (HTTP), sehingga mengurangi risiko pencurian cookie.
+  
+  SameSite:
+  Cookie yang memiliki atribut SameSite membantu mencegah serangan CSRF (Cross-Site Request Forgery) dengan membatasi pengiriman cookie dalam permintaan lintas situs. Ada tiga nilai yang dapat digunakan: Strict, Lax, dan None, masing-masing dengan tingkat keamanan yang berbeda.
+
+  Cookies yang Tidak Aman
+  Cookies Tanpa Keamanan:
+  Cookies yang tidak memiliki atribut HttpOnly atau Secure lebih rentan terhadap serangan XSS dan pencurian cookie, karena dapat diakses dan dikirim melalui koneksi yang tidak aman.
+  Cookies dengan Data Sensitif:
+  Cookies yang menyimpan informasi sensitif seperti kata sandi atau informasi kartu kredit harus dihindari. Data sensitif sebaiknya tidak disimpan di cookie, tetapi di server dengan ID sesi yang aman.
+
+  5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step.
+  Fungsi Registrasi, Login, dan Logout: Saya membuat beberapa function di views untuk registrasi, login, dan logout menggunakan django.contrib.auth. Masing-masing function itu menggunakan seperti UserCreationForm, AuthenticationForm, dan HttpResponseRedirect untuk mengambil data dan redirect user.
+
+  Membuat Dua Akun Pengguna: Saya menggunakan page registrasi untuk membuat dua akun user dan menggunakan form dari tugas sebelumnya untuk menambahkan tiga produk dummy untuk masing-masing akun dengan menggunakan model Product.
+
+  Menghubungkan Model Product dengan User: Saya menambahkan `user= models.ForeignKey(User, on_delete=models.CASCADE)` pada model Product dan mengubah beberapa line di fungsi create_product pada views agar mengambil user dan menyimpannya untuk tiap produk.
+
+  Menampilkan Detail Informasi Pengguna: Pada base.html, saya menampilkan nama pengguna yang sedang login dan menggunakan cookies untuk menyimpan waktu login terakhir. Hal ini dilakukan dengan menambahkan logic dalam views untuk mengambil dan menyimpan data ini di cookies lalu ditambahkan line seperti dibawah pada base.html:
+  
+    <div class="login-info {% if request.path != '/login/' and request.path != '/register/' %}active{% endif %}">
+            <p>Welcome, {{ user_name }}!</p>
+            <p>Last logged in: {{ last_login }}</p>
+    </div>
+Disini ketika user berada pada halaman login atau registrasi, visibility container diatas diubah menjadi hidden dan ketika masuk ke content.html diubah menjadi visible sehingga detail informasi pengguna terlihat.
+</details>
