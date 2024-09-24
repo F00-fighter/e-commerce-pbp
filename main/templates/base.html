@@ -101,8 +101,11 @@
             <a href="#">ABOUT</a>
             <a href="#">SUPPORT</a>
             <a href="{% url 'main:logout' %}">LOGOUT</a>
-
         </nav>
+        <div class="login-info {% if request.path != '/login/' and request.path != '/register/' %}active{% endif %}">
+            <p>Welcome, {{ user_name }}!</p>
+            <p>Last logged in: {{ last_login }}</p>
+        </div>
     </header>
 
       <!-- Block Content for dynamic content starts right after header -->

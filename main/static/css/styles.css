@@ -54,30 +54,49 @@ body {
     cursor: pointer;
 }
 
+.login-info {
+    flex: 1;
+    text-align: right;
+    color: #c7d5e0; /* Text color */
+    display: flex;
+    flex-direction: column;
+    font-size: 14px; /* Adjust font size */
+    visibility: hidden;
+}
+
+
+.login-info.active {
+    visibility: visible; /* Show when needed */
+}
+
+
 header {
     background-color: #171a21;
-    padding: 30px;
+    padding: 60px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 100px;
 }
 
 .logo {
+    padding-left: 60px;
     font-size: 40px;
+    flex: 1;
 }
 
-.logo a {
-    font-size: 16px;
-}
 
 nav {
+    flex: 2;
     display: flex;
     gap: 20px;
+    justify-content: center;
+    padding-right: 60px;
 }
 
 nav a {
     color: #c7d5e0;
+    font-size: 16px;
     text-decoration: none;
 }
 
@@ -122,6 +141,11 @@ nav a:hover {
     margin: 0 15px;
     text-decoration: none;
     font-size: 14px;
+}
+
+#featured-tag {
+    font-weight: lighter;
+    margin-left: 15%;
 }
 
 /* Feature & Recommended Section */
