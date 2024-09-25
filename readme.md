@@ -125,6 +125,7 @@ Di file urls.py, tambahkan path untuk setiap fungsi view, sehingga memungkinkan 
   Namun tidak semua cookies aman, berikut rincian antar yang aman dan tidak aman:
   
   Cookies yang Aman
+  
   HttpOnly:
   Cookie dengan atribut HttpOnly tidak dapat diakses melalui JavaScript. Ini membantu melindungi cookie dari serangan XSS (Cross-Site Scripting).
   
@@ -135,6 +136,7 @@ Di file urls.py, tambahkan path untuk setiap fungsi view, sehingga memungkinkan 
   Cookie yang memiliki atribut SameSite membantu mencegah serangan CSRF (Cross-Site Request Forgery) dengan membatasi pengiriman cookie dalam permintaan lintas situs. Ada tiga nilai yang dapat digunakan: Strict, Lax, dan None, masing-masing dengan tingkat keamanan yang berbeda.
 
   Cookies yang Tidak Aman
+  
   Cookies Tanpa Keamanan:
   Cookies yang tidak memiliki atribut HttpOnly atau Secure lebih rentan terhadap serangan XSS dan pencurian cookie, karena dapat diakses dan dikirim melalui koneksi yang tidak aman.
   
