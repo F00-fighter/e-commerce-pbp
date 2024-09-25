@@ -118,8 +118,9 @@ Di file urls.py, tambahkan path untuk setiap fungsi view, sehingga memungkinkan 
   
   Authorization adalah proses menentukan hak akses user setelah diotentikasi, yaitu apa yang boleh dan tidak boleh dilakukan user dalam aplikasi.
   
-  4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan          apakah semua cookies aman digunakan?
-    Django mengingat user yang telah login dengan menggunakan session yang disimpan dalam cookies di   browser user. Saat user berhasil login, Django membuat session baru dan disimpan lah ID pengguna dalam cookie. Cookies juga dapat digunakan untuk menyimpan data lain, seperti preference user atau temporary data.
+  4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+   
+  Django mengingat user yang telah login dengan menggunakan session yang disimpan dalam cookies di   browser user. Saat user berhasil login, Django membuat session baru dan disimpan lah ID pengguna dalam cookie. Cookies juga dapat digunakan untuk menyimpan data lain, seperti preference user atau temporary data.
 
   Namun tidak semua cookies aman, berikut rincian antar yang aman dan tidak aman:
   Cookies yang Aman
