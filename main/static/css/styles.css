@@ -8,12 +8,11 @@ body {
 
 .register-page{
     height: calc(100vh - 100px);
-    /* Background image with gradient overlay */
     background: linear-gradient(
-        rgba(27, 40, 56, 0.76),  /* Top gradient color, with transparency */
+        rgba(27, 40, 56, 0.76),  /* Top gradient color*/
         rgba(27, 40, 56, 1)     /* Bottom gradient color */
     ),
-    url("../media/stardewvalley.jpg") no-repeat center center fixed; /* Your background image path */
+    url("../media/stardewvalley.jpg") no-repeat center center fixed; 
     background-size: cover; /* Cover the entire background */
     padding-top: 100px;
     align-items: center;
@@ -57,10 +56,10 @@ body {
 .login-info {
     flex: 1;
     text-align: right;
-    color: #c7d5e0; /* Text color */
+    color: #c7d5e0; 
     display: flex;
     flex-direction: column;
-    font-size: 14px; /* Adjust font size */
+    font-size: 14px; 
     visibility: hidden;
 }
 
@@ -92,6 +91,7 @@ nav {
     gap: 20px;
     justify-content: center;
     padding-right: 60px;
+    visibility: hidden;
 }
 
 nav a {
@@ -104,10 +104,74 @@ nav a:hover {
     color: #66c0f4;
 }
 
+.nav-stuff.active{
+    visibility: visible;
+}
+
+
+/* Hamburger menu */
+.hamburger {
+    display: none;
+    font-size: 2rem;
+    color: #c7d5e0;
+    cursor: pointer;
+}
+
+/* Responsive styling for mobile */
+@media screen and (max-width: 768px) {
+    header {
+        padding: 20px;
+        flex-direction: row;
+        height: auto;
+        width: auto;
+    }
+
+    .main-offer {
+        height: auto; /* Allow it to adjust based on content */
+        max-height: 400px; /* Set a max height to avoid excessive height */
+        padding: 10px; /* Reduce padding */
+        overflow: hidden; /* Prevent overflow */
+    }
+
+    .nav-stuff{
+        display: none; /* Hide by default */
+        flex-direction: column; /* Stack them vertically */
+        background-color: #171a21;
+        padding: 20px; /* Add padding to the dropdown */
+        position: absolute; /* Position relative to header */
+        top: 150px; /* Position it right below the header */
+        left: 0; /* Align it to the left */
+        width: 100%; /* Full width */
+        z-index: 5;
+    }
+
+    .login-info{
+        display: none; /* Hide by default */
+        flex-direction: column; /* Stack them vertically */
+        background-color: #171a21;
+        padding: 20px; /* Add padding to the dropdown */
+        position: absolute; /* Position relative to header */
+        top: 350px; /* Position it right below the header */
+        left: 0; /* Align it to the left */
+        width: 100%; /* Full width */
+        z-index: 5;
+        text-align: left;
+    }
+    .hamburger{
+        display: block;
+        margin-left: auto;
+    }
+
+    .nav-stuff.active,.login-info.active {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
 /* Main Offer Section */
 .main-offer {
-    width: 100vw; /* Full viewport width */
-    height: 100vh; /* Full viewport height */
+    width: 100vw; 
+    height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -117,23 +181,23 @@ nav a:hover {
 }
 
 .main-offer img {
-    max-width: 100%; /* Ensures image doesn't stretch too much */
-    max-height: 100%; /* Ensures image doesn't stretch too much */
-    object-fit: contain; /* Ensures the entire image fits within the container */
+    max-width: 100%; 
+    max-height: 100%; 
+    object-fit: contain; 
 }
 
 /* Floating Tab */
 .floating-tab {
-    background-color: #2a475ed7;
+    background-color: hsla(207, 38%, 27%, 0.843);
     padding: 10px;
     text-align: center;
     position: absolute; /* Absolute positioning to float over the main offer */
-    top: 200px; /* Adjusts how far it is from the top of the viewport */
-    left: 50%; /* Center horizontally */
+    top: 200px; 
+    left: 50%; 
     transform: translateX(-50%); /* Ensures perfect centering */
-    display: inline-block; /* Only take up as much space as its content */
+    display: inline-block; 
     z-index: 2; /* Ensures it stays on top of the main offer image */
-    border-radius: 5px; /* Optional: Rounded corners */
+    border-radius: 5px; 
 }
 
 .floating-tab a {
@@ -161,7 +225,7 @@ nav a:hover {
 .scroll-content {
     display: flex;
     transition: transform 0.5s ease; /* Smooth transition for scrolling */
-    width: 100%; /* Adjust based on the number of features */
+    width: 100%; 
 }
 
 .feature-item {
@@ -191,7 +255,7 @@ nav a:hover {
 
 @media (max-width: 830px) {
     .desc {
-        display: none; /* Shrink text slightly on small screens */
+        display: none; 
     }
 }
 
@@ -229,7 +293,7 @@ nav a:hover {
 /* Categories Section */
 .categories {
     display: flex;
-    overflow-x: auto; /* Allows horizontal scrolling */
+    overflow-x: auto; 
     padding: 10px;
     gap: 10px;
 }
@@ -248,9 +312,9 @@ input[type="password"],
 input[type="username"],
 input[type="password1"],
 input[type="password2"]{
-    width: 100%; /* Makes the input fields span 100% */
-    padding: 10px; /* Add some padding */
-    border: none; /* Remove default border */
+    width: 100%; 
+    padding: 10px; 
+    border: none; 
     background-color: rgba(255, 255, 255, 0.061); /* Darker color for the input fields */
     color: white; /* Text color for the input fields */
 }
@@ -282,6 +346,154 @@ input[type="submit"] {
     color: red;
     font-size: 0.9rem;
     margin-top: 5px;
-    max-width: 250px; /* Set a maximum width */
+    max-width: 250px; 
     word-wrap: break-word; /* Ensure text wraps within the container */
+}
+
+.floating-cart {
+    position: fixed; /* Fixed positioning */
+    bottom: 20px; /* Adjust the vertical position */
+    right: 20px; /* Adjust the horizontal position */
+    background-color:   rgba(23, 26, 33, 0.903); /* Slightly transparent background */
+    padding: 15px; /* Padding */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Shadow effect */
+    z-index: 1000; /* Ensure it is above other elements */
+    transition: transform 0.3s ease; /* Smooth transition */
+}
+
+.cart-image{
+    height: 50px;
+    width: auto;
+}
+
+.floating-cart:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+}
+
+.floating-cart-details{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 20px;
+    padding-left: 5px;
+    padding-right: 10px;
+}
+
+.floating-cart a {
+    text-decoration: none; /* Remove underline */
+    color: #c7d5e0; /* Text color */
+    font-weight: lighter;
+}
+
+.cart-container {
+    margin: 0 auto; /* Horizontal centering */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Horizontal centering */
+    min-height: 100vh; /* Ensures the container takes up at least the full height of the viewport */
+}
+
+.cart-items{
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: center;
+}
+
+.cart-item{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 880px;
+    align-items: center;
+    background-color: #171a21bb;
+    margin-bottom: 10px;
+}
+
+#checkout-title{
+    font-weight: lighter;
+    margin-left: 20%;
+}
+
+.item-details-left{
+    display: flex;
+    flex-direction: row;
+    width: 70%;
+    align-items: center;
+    gap: 30px;
+    justify-content: flex-start;
+}
+.item-details-left img{
+    height: 100px;
+    width: auto;
+}
+
+.item-details-right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 30%;
+    gap: 30px;
+    justify-content: flex-end;
+}
+
+.purchases img{
+    height: 200px;
+    width: auto;
+}
+
+.purchases{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 880px;
+    align-items: center;
+    align-self: center;
+    margin: 0 auto;
+
+}
+
+.purchase-item{
+    display: flex;
+    flex-direction: row;
+    background-color: #171a21;
+    width: 100%;
+    margin-bottom: 10px;
+    gap: 20px;
+}
+
+#library-title{
+    margin-left: 22.5%;
+    font-weight: lighter;
+}
+
+.purchase-text{
+    width: 100%;
+}
+
+.purchase-edit{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+#review{
+    text-decoration: none;
+    font-weight: bold;
+}
+
+#refund{
+    text-decoration: none;
+    padding: 10px;
+    background-color: #66c0f4;
+    color:  #171a21;
+    border: none;
+    cursor: pointer;
+    margin-right: 20px;
 }

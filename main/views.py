@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
-from .models import Product  # Import the Product model
-from .forms import ProductForm
-from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect, get_object_or_404
+from .forms import ProductForm, ReviewForm
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.core import serializers
 from django.contrib.auth.forms import UserCreationForm,  AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
@@ -9,19 +8,18 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 import datetime
 from django.urls import reverse
+from .models import Product, Purchase
+
 
 
 @login_required(login_url='/login')
 def show_main(request):
     user_name = request.user.username if request.user.is_authenticated else "Guest"
-    products = Product.objects.filter(user=request.user)  # Query to get all products
+    products = Product.objects.all()  # Query to get all products
     last_login = request.COOKIES.get('last_login', 'Never')  # Use .get to avoid KeyError
 
     context = {
         'products': products,
-        'app_name': 'Setim',
-        'name': 'Farrel Dharmawan Dwiyudanto',
-        'class': 'PBP A',
         'user_name': user_name,
         'last_login': last_login,
     }
@@ -41,6 +39,90 @@ def create_product(request):
 
     context = {'form': form}
     return render(request, "create_product.html", context)
+
+
+def add_to_cart(request, product_id):
+    if request.method == 'POST':
+        product = get_object_or_404(Product, id=product_id)
+        cart = request.session.get('cart', [])
+
+        # Convert UUID to string for storage in the session cart
+        product_id_str = str(product_id)
+
+        # Add product if it's not already in the cart
+        if product_id_str not in cart:
+            cart.append(product_id_str)
+
+        # Update the session cart
+        request.session['cart'] = cart
+        
+        return JsonResponse({'status': 'success', 'message': 'Product added to cart.'})
+
+    return JsonResponse({'status': 'error', 'message': 'Invalid request.'})
+
+def cart_view(request):
+    user_name = request.user.username if request.user.is_authenticated else "Guest"
+    last_login = request.COOKIES.get('last_login', 'Never')  # Use .get to avoid KeyError
+    cart = request.session.get('cart', [])
+    products = Product.objects.filter(id__in=cart)  # Get products in cart
+    total_price = sum(product.price for product in products)  # Calculate total price
+    return render(request, 'cart.html', {'products': products, 'total_price': total_price})
+
+def remove_from_cart(request, product_id):
+    cart = request.session.get('cart', [])
+
+    # Ensure the product_id is a string before comparison
+    product_id_str = str(product_id)
+
+    if product_id_str in cart:
+        cart.remove(product_id_str)  # Remove the product from the cart
+        request.session['cart'] = cart  # Update the cart in the session
+
+    return redirect('main:cart')  # Redirect back to the cart page
+
+
+
+def checkout(request):
+    if request.method == 'GET':
+        # Assuming your cart is stored in the session
+        cart = request.session.get('cart', [])
+        user = request.user  # Get the currently logged-in user
+        
+        # Create Purchase records for each product in the cart
+        for product_id in cart:
+            product = Product.objects.get(id=product_id)  # Ensure to handle exceptions in production code
+            Purchase.objects.create(user=user, product=product)
+
+        # Clear the cart after checkout
+        request.session['cart'] = []
+
+        # Redirect to the library page
+        return redirect('main:show_main')
+
+def library(request):
+    user_name = request.user.username if request.user.is_authenticated else "Guest"
+    last_login = request.COOKIES.get('last_login', 'Never')  # Use .get to avoid KeyError
+    purchases = Purchase.objects.filter(user=request.user)
+    return render(request, 'library.html', {'purchases': purchases})
+
+def edit_review(request, purchase_id):
+    user_name = request.user.username if request.user.is_authenticated else "Guest"
+    last_login = request.COOKIES.get('last_login', 'Never')  # Use .get to avoid KeyError
+    purchase = get_object_or_404(Purchase, id=purchase_id, user=request.user)
+    if request.method == 'POST':
+        form = ReviewForm(request.POST, instance=purchase)
+        if form.is_valid():
+            form.save()
+            return redirect('main:library')  # Redirect to the library page
+    else:
+        form = ReviewForm(instance=purchase)
+    return render(request, 'edit_review.html', {'form': form, 'purchase': purchase})
+
+def delete_purchase(request, purchase_id):
+    purchase = get_object_or_404(Purchase, id=purchase_id, user=request.user)
+    purchase.delete()
+    return redirect('main:library')  # Redirect to the library page
+
 
 def show_xml(request):
     data = Product.objects.all()

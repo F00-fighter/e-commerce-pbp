@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Library - Steam Clone{% endblock %}
+
+{% block content %}
+<h1 id="library-title">Your Library</h1>
+{% if purchases %}
+    <ul class="purchases">
+        {% for purchase in purchases %}
+        <div class="purchase-item">
+            <img src="{{ purchase.product.image.url }}">
+            <div class="purchase-text">
+                <p>
+                <span style="font-weight: bold;">{{ purchase.product.name }} </span><br><br>
+                <span>Purchased on {{ purchase.purchase_date }}</span><br><br><br>
+                </p>
+                <div class="purchase-edit">
+                <a href="{% url 'main:edit_review' purchase.id %}" id="review">Edit Review</a>
+                <a href="{% url 'main:delete_purchase' purchase.id %}" id="refund">Refund</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no purchases yet.</p>
+{% endif %}
+{% endblock %}

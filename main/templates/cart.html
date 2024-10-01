@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}Shopping Cart - Steam Clone{% endblock %}
+
+{% block content %}
+<h1 id="checkout-title">Your Shopping Cart</h1>
+<div class="cart-container">
+
+
+    {% if products %}
+        <div class="cart-items">
+            {% for product in products %}
+            <div class="cart-item">
+                <div class="item-details-left">
+                    <img src="{{ product.image.url }}" >
+                    <h3>{{ product.name }}</h3>
+                </div>
+                
+                <div class="item-details-right">
+                    <p>Price: ${{ product.price }}</p>
+                    <form action="{% url 'main:remove_from_cart' product.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit">Remove</button>
+                    </form>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="cart-summary">
+            <p>Total Items: {{ products|length }}</p>
+            <p>Estimated total ${{ total_price  }}</p>
+            <form action="{% url 'main:checkout' %}" method="GET">
+                <button type="submit">Checkout</button>
+            </form>
+        </div>
+    {% else %}
+        <p>Your cart is empty!</p>
+    {% endif %}
+</div>
+{% endblock %}

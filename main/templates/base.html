@@ -8,7 +8,6 @@
     <title>{% block title %}Steam Clone{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <style>
-        /* Base Styles */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -88,6 +87,7 @@
             text-align: center;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
@@ -95,25 +95,31 @@
     <!-- Header -->
     <header>
         <div class="logo">SETIM</div>
-        <nav>
-            <a href="#">STORE</a>
-            <a href="{% url 'main:create_product' %}">COMMUNITY</a>
-            <a href="#">ABOUT</a>
-            <a href="#">SUPPORT</a>
-            <a href="{% url 'main:logout' %}">LOGOUT</a>
-        </nav>
-        <div class="login-info {% if request.path != '/login/' and request.path != '/register/' %}active{% endif %}">
-            <p>Welcome, {{ user_name }}!</p>
-            <p>Last logged in: {{ last_login }}</p>
+        <div class="mobile-relevant"></div>
+            <nav class="nav-stuff {%if request.path != '/login/' and request.path != '/register/' %}active{% endif %}">
+                <a href="{% url 'main:show_main' %}">STORE</a>
+                <a href="{% url 'main:create_product' %}">COMMUNITY</a>
+                <a href="{% url 'main:library' %}">LIBRARY</a>
+                <a href="#">SUPPORT</a>
+                <a href="{% url 'main:logout' %}">LOGOUT</a>
+            </nav>
+            <div class="login-info {% if request.path != '/login/' and request.path != '/register/' %}active{% endif %}">
+                <p>Welcome, {{ user_name }}!</p>
+                <p>Last logged in: {{ last_login }}</p>
+            </div>
+        </div>
+
+        <div class="hamburger" id="hamburger">
+            &#9776;
         </div>
     </header>
 
       <!-- Block Content for dynamic content starts right after header -->
       {% block content %}
-      <!-- Content to be extended by child templates -->
+      
       {% endblock %}
 
-
+      <script src="{% static 'js/hamburger.js' %}"></script>
 </body>
 
 </html>
