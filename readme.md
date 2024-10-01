@@ -123,7 +123,9 @@ Di file urls.py, tambahkan path untuk setiap fungsi view, sehingga memungkinkan 
   Django mengingat user yang telah login dengan menggunakan session yang disimpan dalam cookies di   browser user. Saat user berhasil login, Django membuat session baru dan disimpan lah ID pengguna dalam cookie. Cookies juga dapat digunakan untuk menyimpan data lain, seperti preference user atau temporary data.
 
   Namun tidak semua cookies aman, berikut rincian antar yang aman dan tidak aman:
+  
   Cookies yang Aman
+  
   HttpOnly:
   Cookie dengan atribut HttpOnly tidak dapat diakses melalui JavaScript. Ini membantu melindungi cookie dari serangan XSS (Cross-Site Scripting).
   
@@ -134,12 +136,15 @@ Di file urls.py, tambahkan path untuk setiap fungsi view, sehingga memungkinkan 
   Cookie yang memiliki atribut SameSite membantu mencegah serangan CSRF (Cross-Site Request Forgery) dengan membatasi pengiriman cookie dalam permintaan lintas situs. Ada tiga nilai yang dapat digunakan: Strict, Lax, dan None, masing-masing dengan tingkat keamanan yang berbeda.
 
   Cookies yang Tidak Aman
+  
   Cookies Tanpa Keamanan:
   Cookies yang tidak memiliki atribut HttpOnly atau Secure lebih rentan terhadap serangan XSS dan pencurian cookie, karena dapat diakses dan dikirim melalui koneksi yang tidak aman.
+  
   Cookies dengan Data Sensitif:
   Cookies yang menyimpan informasi sensitif seperti kata sandi atau informasi kartu kredit harus dihindari. Data sensitif sebaiknya tidak disimpan di cookie, tetapi di server dengan ID sesi yang aman.
 
   5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step.
+     
   Fungsi Registrasi, Login, dan Logout: Saya membuat beberapa function di views untuk registrasi, login, dan logout menggunakan django.contrib.auth. Masing-masing function itu menggunakan seperti UserCreationForm, AuthenticationForm, dan HttpResponseRedirect untuk mengambil data dan redirect user.
 
   Membuat Dua Akun Pengguna: Saya menggunakan page registrasi untuk membuat dua akun user dan menggunakan form dari tugas sebelumnya untuk menambahkan tiga produk dummy untuk masing-masing akun dengan menggunakan model Product.
