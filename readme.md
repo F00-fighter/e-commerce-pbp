@@ -169,14 +169,14 @@ Disini ketika user berada pada halaman login atau registrasi, visibility contain
   i. Selector global (*): Berlaku untuk semua elemen dan memiliki prioritas terendah.<br>
   ii. Selector elemen/tag (div, p, h1, dll.): Selector yang langsung menunjuk ke tag HTML.<br>
   iii. Class selector (.class-name): Digunakan untuk elemen dengan class tertentu.<br>
-  iv. Selector atribut ([type="text"]) dan pseudo-class (:hover, :active): Digunakan untuk elemen yang memiliki atribut tertentu atau ketika berada dalam kondisi tertentu.<br>
+  iv. Selector atribut ([type="text"]) dan pseudo-class (:hover, :active): Digunakan untuk elemen yang memiliki atribut tertentu.<br>
   v. ID selector (#id-name): Selektor dengan ID spesifik memiliki prioritas lebih tinggi dibanding class atau tag.<br>
-  vi. Inline styles (style="..."): Jika ditulis langsung pada elemen HTML, gaya ini memiliki prioritas lebih tinggi dari semua selector di file CSS.<br>
+  vi. Inline styles (style="..."): Jika ditulis langsung pada elemen HTML, style ini memiliki prioritas lebih tinggi dari semua selector di file CSS.<br>
   vii. Important rule (!important): Dapat mengesampingkan seluruh aturan di atas, menjadikannya yang paling prioritas. Namun, penggunaannya tidak disarankan kecuali benar-benar diperlukan.<br>
      
 2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
    
-  Responsive design adalah pendekatan dalam pengembangan web di mana layout dan elemen di halaman web dapat menyesuaikan diri dengan ukuran dan orientasi perangkat yang berbeda (desktop, tablet, smartphone). Concern ini muncul karena pengguna dapat mengakses website dari berbagai perangkat dengan ukuran layar yang bervariasi. Maka desain yang responsif memastikan pengalaman pengguna yang optimal di semua perangkat. Jika dibuat responsive design pada suatu website maka aksesibilitas dan keterlibatan pengguna meningkat dengan tampilan yang disesuaikan untuk perangkat mobile.
+  Responsive design adalah pendekatan dalam web development di mana layout dan elemen di halaman web dapat disesuaikan dengan ukuran dan orientasi perangkat yang berbeda (desktop, tablet, smartphone). Concern ini muncul karena user dapat mengakses website dari berbagai perangkat dengan ukuran layar yang berbeda. Maka dara itu desain yang responsif memastikan pengalaman user yang optimal di semua perangkat. Jika dibuat responsive design pada suatu website maka aksesibilitas dan keterlibatan user meningkat dengan tampilan yang disesuaikan untuk perangkat mobile.
 
 3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!<br><br>
    
@@ -206,5 +206,9 @@ Disini ketika user berada pada halaman login atau registrasi, visibility contain
     ```grid-template-rows:``` Menentukan jumlah dan ukuran baris.<br><br>
     
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+   Pertama, website ini sudah terlanjur menggunakan CSS tanpa framework jadi tidak saya ubah, hanya dilanjutkan.
+   Dari kriteria tugas ini, kami diminta untuk membuat fitur edit dan delete suatu model namun pada website e-commerce menurut saya terasa absurd jika saya membuat user dapat mendelete product game, maka dari itu saya tambahkan model purchase yaitu model yang mengambil object product terkait dan dikaitkan dengan user yang membeli model tersebut. Model ini juga memiliki tambahan attribut berupa datetime dan review. Dari model ini dibuat views untuk menjadi logic bagaimana user dapat membeli product dan menyimpannya di laman library pada website. Pada laman itu, user dapat melihat product yang sudah dibeli dan dapat di edit (edit review product) dan delete (refund product, function ini akan mendelete object purchase tersebut).
+
+   Lalu untuk implementasi website yang responsive dilakukan beberapa tweaking pada header website dimana sudah saya control dengan ```@media``` untuk width 768px dimana pada keadaan seperti itu, header akan hanya terdiri dari logo website dan hamburger button, sisa dari header sebenarnnya masih ada tapi diposisikan dibawah header dan disusun menggunakan flexbox dengan direction columns dan dengan ```display: none``` secara default. Bila diaktifkan menggunakan hamburger button maka visibilitynya berubah menjadi visible dan ini berupa mekanisme dropdown menu simple menggunakan CSS. Adapun tambahan setting pada tag div lain seperti pada Big Release, Scroll-Wrapper,dan lain-lain yang dikasih max height untuk ketika width viewport yang sama.
      
 </details>
