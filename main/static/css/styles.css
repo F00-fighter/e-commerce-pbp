@@ -497,3 +497,123 @@ input[type="submit"] {
     cursor: pointer;
     margin-right: 20px;
 }
+
+/* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+#open-modal-btn {
+    width: 20%;
+    height: 50px;
+    padding: 10px;
+    background-color: #66c0f4; /* Button background color */
+    color: #171a21; /* Text color */
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s; 
+    margin-right: 20%;
+}
+
+.modal-content {
+    background-color: rgba(0, 0, 0, 0.71); /* Semi-transparent background for the modal */
+    border-radius: 8px;
+    max-width: 600px; /* Same max-width as login */
+    padding: 20px;
+    margin: 15% auto; /* Centered with margin from top */
+    color: #c7d5e0; /* Same text color as login */
+    display: flex;
+    flex-direction: column; /* Flexbox for layout */
+    gap: 20px; /* Space between elements */
+}
+
+.close-btn {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-btn:hover,
+.close-btn:focus {
+    color: white; /* Change color on hover for better visibility */
+    cursor: pointer;
+}
+
+#create-thread-form input[type="text"],
+#create-thread-form textarea {
+    width: 95%; 
+    padding: 10px; 
+    border: none; 
+    background-color: rgba(255, 255, 255, 0.061); /* Darker color for the input fields */
+    color: #c7d5e0; /* Text color */
+    border-radius: 8px; /* Rounded corners */
+    margin-bottom: 10px; /* Space between fields */
+}
+
+#create-thread-form textarea {
+    resize: vertical; /* Allow vertical resizing only */
+    height: 100
+}
+/* Button Styles */
+#thread-submit {
+    margin-left: auto; /* Align to the right */
+    width: 30%;
+    height: 50px;
+    padding: 10px;
+    background-color: #66c0f4; /* Button background color */
+    color: #171a21; /* Text color */
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s; 
+}
+
+button[type="submit"]:hover {
+    background-color: #54b3e0; /* Darker shade on hover */
+}
+
+.forum-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #171a21a3;
+    max-width: 870px;
+    margin: 0 auto;
+    padding: 20px
+}
+
+#forum-title{
+    font-weight: lighter;
+    margin-left: 20%;
+}
+
+#thread-title{
+    padding: 20px;
+    border-bottom: 1px solid;
+    width: 90%;
+}
+
+#thread-title h2{
+    font-weight: lighter;
+}
+
+.thread-list{
+    margin-right: 65%;
+}
+
+.forum-upperside{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+}

@@ -98,7 +98,7 @@
         <div class="mobile-relevant"></div>
             <nav class="nav-stuff {%if request.path != '/login/' and request.path != '/register/' %}active{% endif %}">
                 <a href="{% url 'main:show_main' %}">STORE</a>
-                <a href="{% url 'main:create_product' %}">COMMUNITY</a>
+                <a href="{% url 'main:community' %}">COMMUNITY</a>
                 <a href="{% url 'main:library' %}">LIBRARY</a>
                 <a href="#">SUPPORT</a>
                 <a href="{% url 'main:logout' %}">LOGOUT</a>

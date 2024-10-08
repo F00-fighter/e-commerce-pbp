@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ product.name }} Forum{% endblock %}
+
+{% block content %}
+<div class="forum-upperside">
+    <h1 id="forum-title">{{ product.name }} Forum</h1>
+    <button id="open-modal-btn">Create a New Thread</button>
+</div>
+<div class="forum-container">
+
+    <!-- Modal Structure -->
+    <div id="thread-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Create a New Thread</h2>
+            <form id="create-thread-form" action="{% url 'main:create_thread' product.id %}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="Thread Title" required>
+                <textarea name="content" placeholder="Thread Content" required></textarea>
+                <button type="submit" id="thread-submit">Create Thread</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="thread-title">
+        <h2>Threads</h2>
+    </div>
+    {% if threads %}
+    <ul class="thread-list">
+        {% for thread in threads %}
+        <li class="thread-item">
+            <h3>{{ thread.title }}</h3>
+            <p>{{ thread.content }}</p>
+            <p>Posted by: {{ thread.user.username }} on {{ thread.created_at }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No threads available for this product.</p>
+    {% endif %}
+</div>
+
+<script src="{% static 'js/forums.js' %}"></script>
+{% endblock %}

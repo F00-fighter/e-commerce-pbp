@@ -12,20 +12,17 @@ document.addEventListener("DOMContentLoaded", function() {
             fetch(`/add_to_cart/${productId}/`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrfToken
+                    'X-CSRFToken': csrfToken // Use CSRF token for security
                 },
-                body: JSON.stringify({ product_id: productId }) // Optional payload
             })
-            .then(response => {
-                if (response.ok) {
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
                     // Optionally, update cart display or show a notification
                     console.log('Product added to cart successfully!');
-
-                    // Update the cart count
                     updateCartCount();
                 } else {
-                    console.error('Error adding product to cart.');
+                    console.error('Error adding product to cart:', data.message);
                 }
             })
             .catch(error => {

@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Community - Steam Clone{% endblock %}
+
+{% block content %}
+<div class="community-container">
+    {% for product in products %}
+    <div class="product-thread">
+        <h2>{{ product.name }} Forum</h2>
+        <a href="{% url 'main:forum_threads' product.id %}">Go to Forum</a>  <!-- Link to the forum for the product -->
+    </div>
+    {% empty %}
+    <p>No products found in your library.</p>
+    {% endfor %}
+</div>
+{% endblock %}
