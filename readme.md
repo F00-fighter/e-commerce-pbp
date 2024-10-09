@@ -212,3 +212,34 @@ Disini ketika user berada pada halaman login atau registrasi, visibility contain
    Lalu untuk implementasi website yang responsive dilakukan beberapa tweaking pada header website dimana sudah saya control dengan ```@media``` untuk width 768px dimana pada keadaan seperti itu, header akan hanya terdiri dari logo website dan hamburger button, sisa dari header sebenarnnya masih ada tapi diposisikan dibawah header dan disusun menggunakan flexbox dengan direction columns dan dengan ```display: none``` secara default. Bila diaktifkan menggunakan hamburger button maka visibilitynya berubah menjadi visible dan ini berupa mekanisme dropdown menu simple menggunakan CSS. Adapun tambahan setting pada tag div lain seperti pada Big Release, Scroll-Wrapper,dan lain-lain yang dikasih max height untuk ketika width viewport yang sama.
      
 </details>
+
+<details>
+  <summary> Tugas 6 </summary>
+  1. Manfaat Penggunaan JavaScript dalam Pengembangan Aplikasi Web: <br><br>
+
+  Ada beberapa fungsionalitas yang dapat dibuat dengan adanya JavaScript:
+  
+  Interaktivitas: JavaScript memungkinkan developer untuk menambahkan interaktivitas pada halaman web, seperti animasi, perubahan konten tanpa memuat ulang halaman, dan responsif terhadap input user.<br>
+  Validasi Formulir: Dengan JavaScript, kita bisa melakukan validasi input pada sisi client sebelum mengirimkan data ke server, mengurangi beban pada server dan membuat user experience menjadi lebih baik.<br>
+  Manipulasi DOM: JavaScript dapat mengubah elemen HTML dan CSS secara dinamis, memungkinkan developer untuk memperbarui tampilan dan fungsi halaman secara real-time.<br>
+  Pengambilan Data Asinkron: Dengan menggunakan AJAX, JavaScript dapat mengambil data dari server tanpa mengganggu user experience, memungkinkan pembaruan konten secara real-time.<br>
+  Integrasi API: JavaScript memudahkan integrasi dengan berbagai API eksternal untuk memperluas apa yang bisa dilkakukan oleh aplikasi.<br>
+
+2. Fungsi Penggunaan await saat Menggunakan fetch(): <br><br>
+
+  await digunakan untuk menunggu hasil dari promise yang dikembalikan oleh fetch(). Kode di bawahnya tidak akan dijalankan sampai permintaan selesai dan kita menerima respons.<br>
+  Jika await tidak digunakan, kode akan terus berjalan tanpa menunggu respons dari fetch(), sehingga mungkin saja kode itu akan mencoba untuk mengakses data sebelum data tersebut tersedia, yang dapat menyebabkan kesalahan atau perilaku yang tidak diinginkan. <br>
+
+3. Mengapa Menggunakan Decorator csrf_exempt pada View untuk AJAX POST: <br><br>
+
+  Decorator csrf_exempt digunakan untuk mengizinkan permintaan POST dari AJAX tanpa memerlukan token CSRF. Ini diperlukan karena saat melakukan permintaan AJAX, token CSRF sering kali tidak disertakan dalam header. <br>
+  Jika csrf_exempt tidak digunakan maka permintaan tersebut akan ditolak oleh Django karena tidak memenuhi persyaratan keamanan CSRF.<br>
+
+4. Mengapa Pembersihan Data Input Pengguna Dilakukan di Backend: <br><br>
+
+  Pembersihan data di backend penting untuk memastikan bahwa data yang diterima aman dan valid. Meskipun kita dapat melakukan pembersihan di frontend, data dapat dimanipulasi oleh pengguna (misalnya, melalui alat             pengembang), sehingga pembersihan di backend adalah langkah penting untuk melindungi aplikasi dari serangan seperti injeksi SQL atau XSS.<br>
+
+5. Cara Mengimplementasikan Checklist Secara Step-by-Step: <br> <br>
+  Pertama karena konteks ajax yang diminta menggunakan GET dan POST serta ada penggunaan modal maka saya tambahkan fitur baru ke website yang mirip dengan penambahan mood yaitu fitur forum. Awalnya forum ini berfungsi mirip dengan comment section youtube dimana ada main comment dan replies dibawahnya, namun ketika dibuat ternyata lumayan kompleks. Jadi agar tidak kewalahan dan terlalu jauh dari scope tugas, dibikin saja forum tanpa replies. Fitur ini menggunakan 2 model yaitu purchase dan model baru yaitu threads yang isinya ada user, datetime, dan content. Fitur ini hanya dapat diakses ketika user sudah memiliki produk di librarynya, lalu ketika mereka akses forum tersebut, mereka memiliki opsi untuk menambahkan comment lalu mengedit atau delete comment yang sudah dibuat dengan menggunakan modal form. <br><br>
+  Selain dari itu, fitur shopping cart awalnya mau dibuat menggunakan modal form tapi karena source materialnya tidak menggunakan modal untuk shopping cartnya, saya tidak implementasi seperti itu. Namun passing penambahan dari purchase model (model yang berisi product, user, datetime, dan review) sudah menggunakan ajax. Penggunaan AJAX di sini memastikan bahwa shopping cart dapat update tanpa refresh halaman dan object pada shopping cart dapat di delete tanpa refresh halaman.
+</details>
