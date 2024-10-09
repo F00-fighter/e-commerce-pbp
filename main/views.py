@@ -10,6 +10,8 @@ import datetime
 from django.urls import reverse
 from .models import Product, Purchase, Thread,Reply,Like
 from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
+import bleach
 
 @login_required(login_url='/login')
 def show_main(request):
@@ -234,15 +236,23 @@ def thread_replies(request, thread_id):
 def create_thread(request, product_id):
     if request.method == 'POST':
         product = get_object_or_404(Product, id=product_id)
-        title = request.POST.get('title')
-        content = request.POST.get('content')
+        title = strip_tags(request.POST.get('title'))
+        content = strip_tags(request.POST.get('content'))
+        # Clean the input data
+        clean_title = bleach.clean(title)
+        clean_content = bleach.clean(content)
 
+        if not clean_title or not clean_content:
+            return JsonResponse({'status': 'error', 'message': 'Title and content cannot be empty.'})
+
+        # Create the thread
         thread = Thread.objects.create(
-            title=title,
-            content=content,
+            title=clean_title,
+            content=clean_content,
             user=request.user,
             product=product
         )
+
         return JsonResponse({
             'status': 'success',
             'thread': {
@@ -253,8 +263,8 @@ def create_thread(request, product_id):
                 'created_at': thread.created_at.strftime('%Y-%m-%d %H:%M:%S'),
             }
         })
-    return JsonResponse({'status': 'error', 'message': 'Invalid request.'})
 
+    return JsonResponse({'status': 'error', 'message': 'Invalid request.'})
 # Create a new reply in a thread
 @login_required
 @require_POST
